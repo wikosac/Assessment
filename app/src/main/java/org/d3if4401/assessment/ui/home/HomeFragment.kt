@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import org.d3if4401.assessment.R
+import org.d3if4401.assessment.databinding.HomeFragmentBinding
 
 class HomeFragment : Fragment() {
 
@@ -14,13 +15,21 @@ class HomeFragment : Fragment() {
         fun newInstance() = HomeFragment()
     }
 
+    private lateinit var binding: HomeFragmentBinding
     private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.home_fragment, container, false)
+        binding = HomeFragmentBinding.inflate(layoutInflater, container, false)
+
+        binding.search.setOnClickListener {
+            val res = "HASIL PENCARIAN: "
+            val hasil = binding.bar.text.toString().uppercase()
+            binding.result.setText(res + hasil)
+        }
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
