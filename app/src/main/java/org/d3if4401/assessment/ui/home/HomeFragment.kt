@@ -32,14 +32,13 @@ class HomeFragment : Fragment() {
             val hasil = binding.bar.text.toString().uppercase()
             val forImg = binding.bar.text.toString().lowercase()
             val imgRes = resources.getIdentifier(forImg, "drawable", "org.d3if4401.assessment")
-            val empty = requireContext()!!.resources.getDrawable(R.drawable.ic_launcher_foreground,requireContext()!!.theme)
 
             if (imgRes > 0) {
                 binding.result.setText(res + hasil)
                 binding.imageView.setImageResource(imgRes)
             } else {
                 binding.result.setText(kos)
-                binding.imageView.setImageDrawable(empty)
+                binding.imageView.setImageResource(imgRes)
             }
         }
         return binding.root
