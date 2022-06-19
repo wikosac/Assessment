@@ -25,29 +25,26 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = HomeFragmentBinding.inflate(layoutInflater, container, false)
-
-        binding.search.setOnClickListener {
-            val res = "HASIL PENCARIAN: "
-            val kos = "HASIL TIDAK DITEMUKAN"
-            val hasil = binding.bar.text.toString().uppercase()
-            val forImg = binding.bar.text.toString().lowercase()
-            val imgRes = resources.getIdentifier(forImg, "drawable", "org.d3if4401.assessment")
-
-            if (imgRes > 0) {
-                binding.result.setText(res + hasil)
-                binding.imageView.setImageResource(imgRes)
-            } else {
-                binding.result.setText(kos)
-                binding.imageView.setImageResource(imgRes)
-            }
-        }
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.search.setOnClickListener { cari() }
     }
 
+    private fun cari() {
+        val res = "HASIL PENCARIAN: "
+        val kos = "HASIL TIDAK DITEMUKAN"
+        val hasil = binding.bar.text.toString().uppercase()
+        val forImg = binding.bar.text.toString().lowercase()
+        val imgRes = resources.getIdentifier(forImg, "drawable", "org.d3if4401.assessment")
+
+        if (imgRes > 0) {
+            binding.result.setText(res + hasil)
+            binding.imageView.setImageResource(imgRes)
+        } else {
+            binding.result.setText(kos)
+            binding.imageView.setImageResource(imgRes)
+        }
+    }
 }

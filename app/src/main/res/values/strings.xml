@@ -3,4 +3,6 @@
     <string name="result">Hasil pencarian:</string>
     <string name="search">Nama hewan</string>
     <string name="blank"> </string>
+    <string name="koneksi_error">Koneksi error</string>
+    <string name="message">%1$s diklik!</string>
 </resources>
