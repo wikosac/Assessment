@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="org.d3if4401.assessment.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_home_to_detail"
+            app:destination="@+id/navigation_detail" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_category"
@@ -22,4 +26,10 @@
         android:name="org.d3if4401.assessment.ui.setting.SettingFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/setting_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_detail"
+        android:name="org.d3if4401.assessment.ui.DetailFragment"
+        android:label="@string/title_detail"
+        tools:layout="@layout/fragment_detail"/>
 </navigation>
