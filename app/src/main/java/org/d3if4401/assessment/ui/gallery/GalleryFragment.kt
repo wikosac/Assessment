@@ -19,14 +19,19 @@ class GalleryFragment : Fragment() {
         fun newInstance() = GalleryFragment()
     }
 
+    private val viewModel: GalleryViewModel by lazy {
+        ViewModelProvider(this).get(GalleryViewModel::class.java)
+    }
+
     private lateinit var binding: GalleryFragmentBinding
-    private lateinit var viewModel: GalleryViewModel
+    private lateinit var myAdapter: GalleryAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = GalleryFragmentBinding.inflate(layoutInflater, container, false)
+        myAdapter = GalleryAdapter()
         with(binding.recyclerView) {
             addItemDecoration(
                 DividerItemDecoration(
@@ -34,30 +39,16 @@ class GalleryFragment : Fragment() {
                     RecyclerView.VERTICAL
                 )
             )
-            adapter = GalleryAdapter(getData())
+            adapter = myAdapter
             setHasFixedSize(true)
         }
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(GalleryViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
-    private fun getData(): List<Hewan> {
-        return listOf(
-            Hewan("Angsa", "Cygnus olor", R.drawable.angsa),
-            Hewan("Ayam", "Gallus gallus", R.drawable.ayam),
-            Hewan("Bebek", "Cairina moschata", R.drawable.bebek),
-            Hewan("Domba", "Ovis ammon", R.drawable.domba),
-            Hewan("Kalkun", "Meleagris gallopavo", R.drawable.kalkun),
-            Hewan("Kambing", "Capricornis sumatrensis", R.drawable.kambing),
-            Hewan("Kelinci", "Oryctolagus cuniculus", R.drawable.kelinci),
-            Hewan("Kerbau", "Bubalus bubalis", R.drawable.kerbau),
-            Hewan("Kuda", "Equus caballus", R.drawable.kuda),
-            Hewan("Sapi", "Bos taurus", R.drawable.sapi),
-        )
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.getData().observe(viewLifecycleOwner, {
+            myAdapter.updateData(it)
+        })
     }
 }
