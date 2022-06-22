@@ -47,9 +47,6 @@ class HomeFragment : Fragment() {
         binding.shareButton.setOnClickListener { shareData() }
 
         viewModel.getHasilHewan().observe(requireActivity(), { showResult(it) })
-        viewModel.data.observe(viewLifecycleOwner, {
-            if (it == null) return@observe
-            Log.d("HomeFragment", "Data tersimpan. ID = ${it.id}") })
     }
 
     private fun cari() {

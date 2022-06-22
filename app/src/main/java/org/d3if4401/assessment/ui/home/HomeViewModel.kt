@@ -15,8 +15,6 @@ class HomeViewModel(private val db: HewanDao) : ViewModel() {
 
     private val hasilHewan = MutableLiveData<Hewan?>()
 
-    val data = db.getLastBmi()
-
     fun hasilInput(nama: String, latin: String, img: Int) {
         hasilHewan.value = Hewan(nama, latin, img)
 

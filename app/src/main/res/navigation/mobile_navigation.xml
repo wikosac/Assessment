@@ -48,7 +48,7 @@
 
     <fragment
         android:id="@+id/historiFragment"
-        android:name="org.d3if4401.assessment.ui.HistoriFragment"
+        android:name="org.d3if4401.assessment.ui.histori.HistoriFragment"
         android:label="@string/histori"
         tools:layout="@layout/fragment_histori"/>
 </navigation>
