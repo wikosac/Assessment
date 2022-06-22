@@ -3,13 +3,12 @@ package org.d3if4401.assessment.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import org.d3if4401.assessment.R
 import org.d3if4401.assessment.databinding.HomeFragmentBinding
 import org.d3if4401.assessment.db.HewanDb
@@ -31,6 +30,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = HomeFragmentBinding.inflate(layoutInflater, container, false)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -83,5 +83,20 @@ class HomeFragment : Fragment() {
             binding.imageView.setImageResource(imgRes)
             binding.buttonGroup.visibility = View.INVISIBLE
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.menu_histori -> {
+                findNavController().navigate(R.id.action_homeFragment_to_historiFragment)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

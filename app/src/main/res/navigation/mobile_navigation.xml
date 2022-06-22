@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_home_to_detail"
             app:destination="@+id/navigation_detail" />
+        <action
+            android:id="@+id/action_homeFragment_to_historiFragment"
+            app:destination="@id/historiFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingFragment"
+            app:destination="@id/navigation_setting" />
     </fragment>
 
     <fragment
@@ -39,4 +45,10 @@
             android:name="imgDetail"
             app:argType="integer" />
     </fragment>
+
+    <fragment
+        android:id="@+id/historiFragment"
+        android:name="org.d3if4401.assessment.ui.HistoriFragment"
+        android:label="@string/histori"
+        tools:layout="@layout/fragment_histori"/>
 </navigation>

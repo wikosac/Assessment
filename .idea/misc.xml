@@ -9,11 +9,13 @@
         <entry key="..\:/Kotlin/Assessment/app/src/main/res/drawable/ic_launcher_background.xml" value="0.137" />
         <entry key="..\:/Kotlin/Assessment/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
         <entry key="..\:/Kotlin/Assessment/app/src/main/res/layout/fragment_detail.xml" value="0.16666666666666666" />
+        <entry key="..\:/Kotlin/Assessment/app/src/main/res/layout/fragment_histori.xml" value="0.1" />
         <entry key="..\:/Kotlin/Assessment/app/src/main/res/layout/gallery_fragment.xml" value="0.22" />
         <entry key="..\:/Kotlin/Assessment/app/src/main/res/layout/home_fragment.xml" value="0.16666666666666666" />
         <entry key="..\:/Kotlin/Assessment/app/src/main/res/layout/list_item.xml" value="0.16666666666666666" />
         <entry key="..\:/Kotlin/Assessment/app/src/main/res/layout/setting_fragment.xml" value="0.16666666666666666" />
         <entry key="..\:/Kotlin/Assessment/app/src/main/res/menu/bottom_nav_menu.xml" value="0.16666666666666666" />
+        <entry key="..\:/Kotlin/Assessment/app/src/main/res/menu/options_menu.xml" value="0.16666666666666666" />
       </map>
     </option>
   </component>

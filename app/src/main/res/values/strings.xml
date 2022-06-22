@@ -6,6 +6,7 @@
     <string name="blank"> </string>
     <string name="koneksi_error">Koneksi error</string>
     <string name="message">%1$s diklik!</string>
+
     <string name="title_home">Beranda</string>
     <string name="title_category">Galeri</string>
     <string name="title_settings">Pengaturan</string>
@@ -15,4 +16,8 @@
     <string name="title_detail">Detail</string>
     <string name="bagikan">Bagikan</string>
     <string name="bagikan_template">Hewan: %1$s</string>
+
+    <string name="belum_ada_data">Belum ada data</string>
+    <string name="histori">Histori</string>
+    <string name="tentang_aplikasi">Tentang</string>
 </resources>
