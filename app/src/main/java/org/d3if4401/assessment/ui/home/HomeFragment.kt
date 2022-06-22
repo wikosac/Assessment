@@ -2,6 +2,7 @@ package org.d3if4401.assessment.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +12,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import org.d3if4401.assessment.R
 import org.d3if4401.assessment.databinding.HomeFragmentBinding
+import org.d3if4401.assessment.db.HewanDb
+import org.d3if4401.assessment.model.Hewan
 
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: HomeFragmentBinding
+
+    private val viewModel: HomeViewModel by lazy {
+        val db = HewanDb.getInstance(requireContext())
+        val factory = HomeViewModelFactory(db.dao)
+        ViewModelProvider(this, factory)[HomeViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,22 +45,17 @@ class HomeFragment : Fragment() {
                 HomeFragmentDirections.actionHomeToDetail(hasil, imgRes) )
         }
         binding.shareButton.setOnClickListener { shareData() }
+
+        viewModel.getHasilHewan().observe(requireActivity(), { showResult(it) })
+        viewModel.data.observe(viewLifecycleOwner, {
+            if (it == null) return@observe
+            Log.d("HomeFragment", "Data tersimpan. ID = ${it.id}") })
     }
 
     private fun cari() {
-        val hasil = binding.bar.text.toString().uppercase()
-        val forImg = binding.bar.text.toString().lowercase()
-        val imgRes = resources.getIdentifier(forImg, "drawable", "org.d3if4401.assessment")
+        val hasil = binding.bar.text.toString()
 
-        if (imgRes > 0) {
-            binding.result.text = getString(R.string.result, hasil)
-            binding.imageView.setImageResource(imgRes)
-            binding.buttonGroup.visibility = View.VISIBLE
-        } else {
-            binding.result.setText(R.string.kosong)
-            binding.imageView.setImageResource(imgRes)
-            binding.buttonGroup.visibility = View.INVISIBLE
-        }
+        viewModel.hasilInput(hasil,"",0)
     }
 
     private fun shareData() {
@@ -63,6 +67,21 @@ class HomeFragment : Fragment() {
         shareIntent.setType ("text/plain").putExtra(Intent.EXTRA_TEXT, message)
         if (shareIntent.resolveActivity(requireActivity().packageManager) != null) {
             startActivity(shareIntent)
+        }
+    }
+
+    private fun showResult(result: Hewan?) {
+        val forImg = binding.bar.text.toString().lowercase()
+        val imgRes = resources.getIdentifier(forImg, "drawable", "org.d3if4401.assessment")
+
+        if (imgRes > 0) {
+            binding.result.text = getString(R.string.result, result!!.nama)
+            binding.imageView.setImageResource(imgRes)
+            binding.buttonGroup.visibility = View.VISIBLE
+        } else {
+            binding.result.setText(R.string.kosong)
+            binding.imageView.setImageResource(imgRes)
+            binding.buttonGroup.visibility = View.INVISIBLE
         }
     }
 }
