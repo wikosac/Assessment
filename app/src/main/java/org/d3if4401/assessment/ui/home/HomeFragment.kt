@@ -15,10 +15,6 @@ import org.d3if4401.assessment.databinding.HomeFragmentBinding
 
 class HomeFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
-
     private lateinit var binding: HomeFragmentBinding
 
     override fun onCreateView(
@@ -30,27 +26,29 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val hasil = binding.bar.text.toString().uppercase()
+        val forImg = binding.bar.text.toString().lowercase()
+        val imgRes = resources.getIdentifier(forImg, "drawable", "org.d3if4401.assessment")
+
         binding.search.setOnClickListener { cari() }
         binding.detailButton.setOnClickListener {
-            it.findNavController().navigate(
-                R.id.action_home_to_detail )
+            view.findNavController().navigate(
+                HomeFragmentDirections.actionHomeToDetail(hasil, imgRes) )
         }
         binding.shareButton.setOnClickListener { shareData() }
     }
 
     private fun cari() {
-        val res = "HASIL PENCARIAN: "
-        val kos = "HASIL TIDAK DITEMUKAN"
         val hasil = binding.bar.text.toString().uppercase()
         val forImg = binding.bar.text.toString().lowercase()
         val imgRes = resources.getIdentifier(forImg, "drawable", "org.d3if4401.assessment")
 
         if (imgRes > 0) {
-            binding.result.setText(res + hasil)
+            binding.result.text = getString(R.string.result, hasil)
             binding.imageView.setImageResource(imgRes)
             binding.buttonGroup.visibility = View.VISIBLE
         } else {
-            binding.result.setText(kos)
+            binding.result.setText(R.string.kosong)
             binding.imageView.setImageResource(imgRes)
             binding.buttonGroup.visibility = View.INVISIBLE
         }

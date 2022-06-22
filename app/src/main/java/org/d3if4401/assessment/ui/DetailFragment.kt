@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.navArgs
 import org.d3if4401.assessment.R
 import org.d3if4401.assessment.databinding.FragmentDetailBinding
 
@@ -19,10 +20,10 @@ class DetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentDetailBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
+        var args = DetailFragmentArgs.fromBundle(requireArguments())
+        binding.imageDetail.setImageResource(args.imgDetail)
+        binding.textDetail.text = args.namaDetail
+        return binding.root
     }
 }

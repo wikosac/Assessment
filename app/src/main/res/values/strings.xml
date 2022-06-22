@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Assessment</string>
-    <string name="result">Hasil pencarian:</string>
+    <string name="result">HASIL PENCARIAN: %1$s</string>
+    <string name="kosong">HASIL TIDAK DITEMUKAN</string>
     <string name="search">Nama hewan</string>
     <string name="blank"> </string>
     <string name="koneksi_error">Koneksi error</string>

@@ -31,5 +31,12 @@
         android:id="@+id/navigation_detail"
         android:name="org.d3if4401.assessment.ui.DetailFragment"
         android:label="@string/title_detail"
-        tools:layout="@layout/fragment_detail"/>
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="namaDetail"
+            app:argType="string" />
+        <argument
+            android:name="imgDetail"
+            app:argType="integer" />
+    </fragment>
 </navigation>
