@@ -22,4 +22,9 @@
     <string name="tentang_aplikasi">Tentang</string>
     <string name="hasil_x">Hewan: %1$s</string>
     <string name="data_x">Latin: %1$s</string>
+
+    <string name="hapus_histori">Hapus Histori</string>
+    <string name="konfirmasi_hapus">Hapus semua histori?</string>
+    <string name="hapus">Hapus</string>
+    <string name="batal">Batal</string>
 </resources>

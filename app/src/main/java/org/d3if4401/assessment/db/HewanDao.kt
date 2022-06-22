@@ -9,6 +9,10 @@ import androidx.room.Query
 interface HewanDao {
     @Insert
     fun insert(hewan: HewanEntity)
+
     @Query("SELECT * FROM hewan ORDER BY id DESC")
     fun getLastBmi(): LiveData<List<HewanEntity?>>
+
+    @Query("DELETE FROM hewan")
+    fun clearData()
 }
