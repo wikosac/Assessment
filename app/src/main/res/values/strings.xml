@@ -20,4 +20,6 @@
     <string name="belum_ada_data">Belum ada data</string>
     <string name="histori">Histori</string>
     <string name="tentang_aplikasi">Tentang</string>
+    <string name="hasil_x">Hewan: %1$s</string>
+    <string name="data_x">Latin: %1$s</string>
 </resources>

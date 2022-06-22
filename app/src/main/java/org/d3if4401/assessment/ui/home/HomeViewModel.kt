@@ -20,12 +20,12 @@ class HomeViewModel(private val db: HewanDao) : ViewModel() {
 
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val dataBmi = HewanEntity(
+                val dataHewan = HewanEntity(
                     nama = nama,
                     latin = latin,
                     img = img
                 )
-                db.insert(dataBmi)
+                db.insert(dataHewan)
             }
         }
     }
