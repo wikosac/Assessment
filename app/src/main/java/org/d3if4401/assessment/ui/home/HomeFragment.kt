@@ -1,5 +1,6 @@
 package org.d3if4401.assessment.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +20,6 @@ class HomeFragment : Fragment() {
     }
 
     private lateinit var binding: HomeFragmentBinding
-    private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +35,7 @@ class HomeFragment : Fragment() {
             it.findNavController().navigate(
                 R.id.action_home_to_detail )
         }
+        binding.shareButton.setOnClickListener { shareData() }
     }
 
     private fun cari() {
@@ -47,10 +48,23 @@ class HomeFragment : Fragment() {
         if (imgRes > 0) {
             binding.result.setText(res + hasil)
             binding.imageView.setImageResource(imgRes)
-            binding.detailButton.visibility = View.VISIBLE
+            binding.buttonGroup.visibility = View.VISIBLE
         } else {
             binding.result.setText(kos)
             binding.imageView.setImageResource(imgRes)
+            binding.buttonGroup.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun shareData() {
+        val message = getString(
+            R.string.bagikan_template,
+            binding.bar.text
+        )
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.setType ("text/plain").putExtra(Intent.EXTRA_TEXT, message)
+        if (shareIntent.resolveActivity(requireActivity().packageManager) != null) {
+            startActivity(shareIntent)
         }
     }
 }
