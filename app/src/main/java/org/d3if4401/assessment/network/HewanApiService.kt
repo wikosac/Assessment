@@ -2,6 +2,7 @@ package org.d3if4401.assessment.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import org.d3if4401.assessment.model.Gallery
 import org.d3if4401.assessment.model.Hewan
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -21,7 +22,7 @@ private val retrofit = Retrofit.Builder()
 
 interface HewanApiService {
     @GET("static-api.json")
-    suspend fun getHewan(): List<Hewan>
+    suspend fun getHewan(): List<Gallery>
 }
 
 object HewanApi {

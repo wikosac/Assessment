@@ -8,12 +8,13 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.d3if4401.assessment.R
+import org.d3if4401.assessment.model.Gallery
 import org.d3if4401.assessment.model.Hewan
 import org.d3if4401.assessment.network.HewanApi
 
 class GalleryViewModel : ViewModel() {
 
-    private val data = MutableLiveData<List<Hewan>>()
+    private val data = MutableLiveData<List<Gallery>>()
 
     init {
         retrieveData()
@@ -30,5 +31,5 @@ class GalleryViewModel : ViewModel() {
         }
     }
 
-    fun getData(): LiveData<List<Hewan>> = data
+    fun getData(): LiveData<List<Gallery>> = data
 }

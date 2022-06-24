@@ -8,13 +8,14 @@ import com.bumptech.glide.Glide
 import org.d3if4401.assessment.model.Hewan
 import org.d3if4401.assessment.R
 import org.d3if4401.assessment.databinding.ListItemBinding
+import org.d3if4401.assessment.model.Gallery
 import org.d3if4401.assessment.network.HewanApi
 
 class GalleryAdapter : RecyclerView.Adapter<GalleryAdapter.ViewHolder>() {
 
-    private val data = mutableListOf<Hewan>()
+    private val data = mutableListOf<Gallery>()
 
-    fun updateData(newData: List<Hewan>) {
+    fun updateData(newData: List<Gallery>) {
         data.clear()
         data.addAll(newData)
         notifyDataSetChanged()
@@ -24,10 +25,13 @@ class GalleryAdapter : RecyclerView.Adapter<GalleryAdapter.ViewHolder>() {
         private val binding: ListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(hewan: Hewan) = with(binding) {
+        fun bind(hewan: Gallery) = with(binding) {
             namaTextView.text = hewan.nama
             latinTextView.text = hewan.namaLatin
-            imageView.setImageResource(hewan.imageResId)
+            Glide.with(imageView.context)
+                .load(HewanApi.getHewanUrl(hewan.imageId))
+                .error(R.drawable.ic_baseline_broken_image_24)
+                .into(imageView)
 
             root.setOnClickListener {
                 val message = root.context.getString(R.string.message, hewan.nama)
