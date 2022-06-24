@@ -18,6 +18,7 @@ import org.d3if4401.assessment.data.dataStore
 import org.d3if4401.assessment.databinding.GalleryFragmentBinding
 import org.d3if4401.assessment.databinding.HomeFragmentBinding
 import org.d3if4401.assessment.model.Hewan
+import org.d3if4401.assessment.network.ApiStatus
 
 class GalleryFragment : Fragment() {
 
@@ -67,6 +68,10 @@ class GalleryFragment : Fragment() {
 
         viewModel.getData().observe(viewLifecycleOwner, {
             myAdapter.updateData(it)
+        })
+
+        viewModel.getStatus().observe(viewLifecycleOwner, {
+            updateProgress(it)
         })
     }
 
@@ -118,6 +123,20 @@ class GalleryFragment : Fragment() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun updateProgress(status: ApiStatus) {
+        when (status) {
+            ApiStatus.LOADING -> {
+                binding.progressBar.visibility = View.VISIBLE
+            }ApiStatus.SUCCESS -> {
+            binding.progressBar.visibility = View.GONE
+        }
+            ApiStatus.FAILED -> {
+                binding.progressBar.visibility = View.GONE
+                binding.networkError.visibility = View.VISIBLE
+            }
         }
     }
 }
